@@ -24,4 +24,29 @@ class FloydWarshall {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
 
-                    if (dist[i][k] != 999 && dist[k][j]
+                    if (dist[i][k] != 999 && dist[k][j] != 999 &&
+                        dist[i][k] + dist[k][j] < dist[i][j]) {
+
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                    }
+                }
+            }
+        }
+
+        // Display shortest distance matrix
+        System.out.println("\nShortest Distance Matrix:");
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+
+                if (dist[i][j] == 999)
+                    System.out.print("INF\t");
+                else
+                    System.out.print(dist[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
